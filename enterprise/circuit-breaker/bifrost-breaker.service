@@ -1,0 +1,17 @@
+[Unit]
+Description=Bifrost enterprise circuit breaker (clean-room rebuild, own code)
+After=network.target bifrost.service
+Wants=bifrost.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/bifrost-breaker/breaker.py /etc/bifrost-breaker/config.json
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+# Deliberately separate from bifrost.service: never touches /etc/bifrost/config.json
+# or the live Bifrost container. Own port 8082 (tailnet-only, same posture).
+
+[Install]
+WantedBy=multi-user.target
