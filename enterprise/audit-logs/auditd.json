@@ -1,0 +1,1 @@
+{"checkpoint_every":100,"data_dir":"/var/lib/bifrost-audit","listen_host":"100.83.164.96","listen_port":8090,"log_file":"audit.jsonl","metrics_interval_s":60,"model_map_refresh_s":300,"upstream_host":"100.83.164.96","upstream_port":8081,"upstream_timeout_s":300}
