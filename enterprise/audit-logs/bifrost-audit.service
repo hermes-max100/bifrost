@@ -1,0 +1,17 @@
+[Unit]
+Description=Bifrost immutable audit logs (own code, standalone)
+After=network-online.target docker.service bifrost.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/bifrost-audit
+ExecStart=/usr/bin/python3 /opt/bifrost-audit/auditd.py serve --config /opt/bifrost-audit/auditd.json
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
